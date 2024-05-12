@@ -82,7 +82,11 @@ checkUserCorrecttnesss(userInput){
     let coordinates = [];
     coordinates = charByIndexMap.get(input());
     //
+    if (userRandomsSet.includes(input())){
+        userRandomsSet.delete(input());
+        counter = coordinates.length;
 
+        for ()
 }
 
 
