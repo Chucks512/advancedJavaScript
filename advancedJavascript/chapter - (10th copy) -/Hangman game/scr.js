@@ -1,12 +1,20 @@
 console.log("testing string...............");
-gameover = 1;
+gameOver = 6;
 
-function changePic() {
-    document.getElementById('hangManPic').src= gameover+'.jpg';
+function printDeadistLevel(gameover) {
+    document.getElementById('hangManPic').src = gameover+'.jpg';
 }
-//changePic();
+//printDeadistLevel(gameover);
+function output(theString){
+outTake = document.getElementById('outputHere');
+outTake.innerHTML = theString;
+}
+function input(){
+    return document.getElementById('userInput').value ;
 
-const randomWords = [
+}
+
+const randomList = [
 	"Administration",
 	"Appearance",
 	"Atmosphere",
