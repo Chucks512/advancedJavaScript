@@ -1,38 +1,28 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Hangman Game</title>
-    <style>
-        .gameArea {
-            text-align: center;
-            font-size: 2em;
-        }
-
-        .box,
-        .boxD {
-            display: inline-block;
-            padding: 5px;
-        }
-
-        .boxE {
-            display: inline-block;
-            width: 40px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1.5em;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="gameArea">
-        <div class="score"> </div>
-        <div class="puzzle"></div>
-        <div class="letters"></div>
-        <button>Start Game</button>
+    <h1>HangMan Game!</h1>
+
+    <div id="inputDiv">
+        <input type="text" id="userInput" value="+++">
+        <button type="button" onclick="checkAnswer()">Check Answer</button>
     </div>
+    <div id="outputDiv">
+        <p id="outputHere">testing...</p>
+    </div>
+    <div id="imageDiv">
+        <img id="hangManPic" src="" alt="hangman picture" height = 250px>
+    </div>
+
     <script src="scr.js"></script>
 </body>
 
 </html>
+
