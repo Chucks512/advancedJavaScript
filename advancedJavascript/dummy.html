@@ -1,13 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="dummy.css" />
-    <title>Document</title>
-</head>
+<!doctype html>
+<html>
+
 <body>
-    
-<script src="dummy.js"></script>
+    <div id="welcome">Hi there!</div>
+    <form>
+        <input type="text" name="firstname" placeholder="First name" />
+        <input type="text" name="lastname" placeholder="Last name" />
+        <input type="button" onclick="sendInfo()" value="Submit" />
+    </form>
+    <script>
+        function sendInfo() {
+            let p = event.target.parentElement;
+            message("Welcome " + p.firstname.value + " " + p.lastname.value);
+        }
+        function message(m) {
+            document.getElementById("welcome").innerHTML = m;
+        }
+    </script>
 </body>
 </html>
+
+<!--
+The function sendInfo() - This function is triggered when the "Submit" button is clicked.
+It starts by obtaining the parent element of the clicked button, which is the <form> element containing the input fields.
+Then, it constructs a welcome message by concatenating the values of the "firstname" and "lastname" input fields within this form.
+ it calls the message, passing the constructed message as an argument.
+
+ The function message(m) - This function is responsible for updating the content of the element with the id "welcome".
+ It takes a parameter which is the m as input.
+ Inside the function, it finds the element with the id "welcome" using document.getElementById("welcome").
+ Then, it sets the innerHTML of this element to the provided message m, effectively updating the content displayed within the <div> with the id "welcome".
+-->
