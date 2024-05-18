@@ -39,7 +39,7 @@ function input() {
 
 
 //-------------------------------------------------------------
-
+/*
 
 charByIndexMap = new Map();
 wordCharsSet = new Set();
@@ -59,8 +59,13 @@ function StringHandler() {
 
 function theLoop() {
     while (true) {
-        alert(randomWord + "YOU WIN!!!")
-        fail;
+        if (userRandomWord == randomWord) {
+            alert(randomWord + "YOU WIN!!!")
+            fail;
+        }
+        else {
+            break;
+        }
     }//----------------------------------logic broer
     printDeadistLevel(gameOver);
     output(userRandomWord);
@@ -70,7 +75,7 @@ function theLoop() {
     checkUserCorrecttnesss(charUserEntry);
 }
 
-checkUserCorrecttnesss(userInput){
+function checkUserCorrecttnesss(userInput) {
     strUserInput = input();
     userInput = strUserInput.toUpperCase();
     copyRandomWord = randomWord;
@@ -80,7 +85,7 @@ checkUserCorrecttnesss(userInput){
     arrUserRandomWord = userRandomWord.split("");
     let coordinates = [];
     coordinates = charByIndexMap.get(input());
-    
+
     if (userRandomsSet.includes(input())) {
         userRandomsSet.delete(input());
         counter = coordinates.length;
@@ -164,3 +169,4 @@ function dampenWord() {
         userRandomWord = userRandomWord.replaceAll(temp, "_");
     }
 }
+*/
