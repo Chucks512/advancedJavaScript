@@ -43,20 +43,7 @@ userRandomsSet = new Set();
 let randomWord;
 let userRandomWord;
 //----------------------------------------------------------------THE ABOVE IS ALL GOOD
-randomWord = "Hello";
 
-
-function threeRandoms() { //---------------------------------------TO BE APPROVED
-    userRandomsSet.clear();
-    let arrRandomword = randomWord.split("");
-    while (userRandomsSet.size < 3) {
-        randomLetter = arrRandomword[Math.floor(Math.random() * arrRandomword.length)]
-        userRandomsSet.add(randomLetter);
-    }
-}
-
-threeRandoms();
-console.log(userRandomsSet);
 
 
 
@@ -175,7 +162,7 @@ function storeCharIndexes() { //---------------------------------------TO BE APP
     }
 }
 
-function dampenWord() { //---------------------------------------TO BE APPROVED
+function dampenWord() { //--------------------------------------- YES
     userRandomWord = randomWord;
     for (let i of userRandomsSet) {
         temp = i;
