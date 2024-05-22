@@ -43,17 +43,20 @@ userRandomsSet = new Set();
 let randomWord;
 let userRandomWord;
 //----------------------------------------------------------------THE ABOVE IS ALL GOOD
-
 randomWord = "Hello";
 
-function wordToHashSet() { //---------------------------------------TO BE APPROVED
-    for (let i = 0; i < randomWord.length(); i++) {
-        wordCharsSet.add(randomWord.charAt(i));
+
+function threeRandoms() { //---------------------------------------TO BE APPROVED
+    userRandomsSet.clear();
+    let arrRandomword = randomWord.split("");
+    while (userRandomsSet.size < 3) {
+        randomLetter = arrRandomword[Math.floor(Math.random() * arrRandomword.length)]
+        userRandomsSet.add(randomLetter);
     }
 }
 
-wordToHashSet();
-console.log(wordCharsSet);
+threeRandoms();
+console.log(userRandomsSet);
 
 
 
@@ -127,20 +130,18 @@ function getRandomWord(myList) { //--------------------------------------- YES
     return randomWord;
 }
 
-function wordToHashSet() { //---------------------------------------TO BE APPROVED
-    for (let i = 0; i < randomWord.length(); i++) {
+function wordToHashSet() { //--------------------------------------- YES
+    for (let i = 0; i < randomWord.length; i++) {
         wordCharsSet.add(randomWord.charAt(i));
     }
 }
 
-function threeRandoms() { //---------------------------------------TO BE APPROVED
+function threeRandoms() { //--------------------------------------- YES
+    userRandomsSet.clear();
     let arrRandomword = randomWord.split("");
-    counter = 0;
-    while (counter < 3) {
+    while (userRandomsSet.size < 3) {
         randomLetter = arrRandomword[Math.floor(Math.random() * arrRandomword.length)]
-        if (true == (userRandomsSet.add(randomLetter))) {
-            counter++;
-        }
+        userRandomsSet.add(randomLetter);
     }
 }
 
