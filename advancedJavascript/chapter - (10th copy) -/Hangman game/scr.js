@@ -1,4 +1,4 @@
-console.log("testing string...............");
+//console.log("testing string...............");
 gameOver = 0;
 
 const randomList = [
@@ -42,23 +42,10 @@ wordCharsSet = new Set();
 userRandomsSet = new Set();
 let randomWord;
 let userRandomWord;
+wordCharsSetClone = [];
+let strUserInput = "";
 //----------------------------------------------------------------THE ABOVE IS ALL GOOD
 
-randomWord = "Responsibility";
-
-function wordToHashSet() { //--------------------------------------- YES
-    for (let i = 0; i < randomWord.length; i++) {
-        wordCharsSet.add(randomWord.charAt(i));
-    }
-}
-
-
-
-
-
-
-//------------------------------------------------------------- BELOW FUNCTIONS TO BE APPROVED
-/*
 function StringHandler() { //---------------------------------------TO BE APPROVED
     randomWord = getRandomWord(randomList);
     randomWord = randomWord.toUpperCase();
@@ -73,7 +60,7 @@ function theLoop() { //---------------------------------------TO BE APPROVED
     while (true) {
         if (userRandomWord == randomWord) {
             alert(randomWord + "YOU WIN!!!")
-            fail;
+            window.stop();
         }
         else {
             break;
@@ -87,19 +74,21 @@ function theLoop() { //---------------------------------------TO BE APPROVED
     checkUserCorrecttnesss(charUserEntry);
 }
 
-function checkUserCorrecttnesss(userInput) { //---------------------------------------TO BE APPROVED
-    strUserInput = input();
+function checkUserCorrecttnesss() { //--------------------------------------- YES
+    //strUserInput = "t"  //change back to userInput
+    strUserInput = strUserInput.toUpperCase();
     userInput = strUserInput.toUpperCase();
     copyRandomWord = randomWord;
 
     builderUserRandomWord = userRandomWord;
-    let arrUserRandomWord = [];//split something??
+    let arrUserRandomWord = [];
     arrUserRandomWord = userRandomWord.split("");
     let coordinates = [];
-    coordinates = charByIndexMap.get(input());
+    coordinates = charByIndexMap.get(strUserInput);
 
-    if (userRandomsSet.includes(input())) {
-        userRandomsSet.delete(input());
+    console.log(wordCharsSetClone.includes(strUserInput));
+    if (wordCharsSetClone.includes(strUserInput)) {
+        delete wordCharsSetClone[ wordCharsSetClone.indexOf(strUserInput) ];
         counter = coordinates.length;
 
         for (let i of coordinates) {
@@ -113,17 +102,19 @@ function checkUserCorrecttnesss(userInput) { //---------------------------------
         for (let myChar of arrUserRandomWord) {
             userRandomWord += myChar;
         }
+        console.log("yessssssssss");
     } else {
         gameOver++;
         if (gameOver > 6) {
             console.log("you lose!! " + randomWord);
-            fail;
+            window.stop();
         }
     }
-}
+} 
 
 function getRandomWord(myList) { //--------------------------------------- YES
     randomWord = myList[Math.floor(Math.random() * myList.length)];
+    randomWord = randomWord.toUpperCase();
     return randomWord;
 }
 
@@ -181,4 +172,3 @@ function dampenWord() { //--------------------------------------- YES
         userRandomWord = userRandomWord.replaceAll(temp, "_");
     }
 }
-*/
