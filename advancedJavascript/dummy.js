@@ -1,13 +1,23 @@
-document.cookie = "name=Maaike;favoriteColor=black";
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const dataDisplay = document.getElementById("dataDisplay");
 
-let cookie = decodeURIComponent(document.cookie);
-let cookieList = cookie.split(";");
-for (let i = 0; i < cookieList.length; i++) {
-    let c = cookieList[i];
-    if (c.charAt(0) == " ") {
-        c = c.trim();
-    }
-    if (c.startsWith("name")) {
-        alert(c.substring(5, c.length));
-    }
-}
+            // Create HTML elements to display the JSON data
+            const nameElement = document.createElement("p");
+            nameElement.textContent = "Name: " + data.name;
+
+            const ageElement = document.createElement("p");
+            ageElement.textContent = "Age: " + data.age;
+
+            const cityElement = document.createElement("p");
+            cityElement.textContent = "City: " + data.city;
+
+            // Append the elements to the "dataDisplay" div
+            dataDisplay.appendChild(nameElement);
+            dataDisplay.appendChild(ageElement);
+            dataDisplay.appendChild(cityElement);
+        })
+        .catch(error => console.error("Error fetching JSON data:", error));
+});
