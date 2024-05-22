@@ -20,10 +20,11 @@ const randomList = [
     "Technology",
     "Transportation"
 ];
-
+document.getElementById('userInput').value = "-";
 
 function printDeadistLevel(gameover) {
     document.getElementById('hangManPic').src = gameover + '.jpg';
+    
 }
 
 function output(theString) {
@@ -35,7 +36,7 @@ function input() {
 
 }
 
-gameOver = 1;
+gameOver = 0;
 charByIndexMap = new Map();
 wordCharsSet = new Set();
 userRandomsSet = new Set();
@@ -76,8 +77,14 @@ function theLoop() { //---------------------------------------TO BE APPROVED
 }
 
 function checkUserCorrecttnesss() { //--------------------------------------- YES
+    if (gameOver< 1) {
+        gameOver = gameOver + 1;
+        return;
+    }
+    console.log("checkUserCorrecttnesss has been fired" + gameOver);
     //strUserInput = "t"  //change back to userInput
-    strUserInput = frontEndButton.value;
+    strUserInput = document.getElementById('userInput').value;
+    strUserInput = strUserInput.toString();
     strUserInput = strUserInput.toUpperCase();
     userInput = strUserInput.toUpperCase();
     copyRandomWord = randomWord;
@@ -103,10 +110,16 @@ function checkUserCorrecttnesss() { //--------------------------------------- YE
         userRandomWord = "";
         for (let myChar of arrUserRandomWord) {
             userRandomWord += myChar;
+            
         }
+        document.getElementById('userInput').innerText = userRandomWord;
+        printDeadistLevel();
         console.log("yessssssssss");
+        
     } else {
         gameOver++;
+        document.getElementById('userInput').innerText = userRandomWord;
+        printDeadistLevel();
         if (gameOver > 6) {
             console.log("you lose!! " + randomWord);
             frontEndButton.style.display = "none"; // makes button disappear
