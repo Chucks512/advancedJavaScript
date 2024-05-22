@@ -44,6 +44,16 @@ let randomWord;
 let userRandomWord;
 //----------------------------------------------------------------THE ABOVE IS ALL GOOD
 
+randomWord = "Responsibility";
+
+function wordToHashSet() { //--------------------------------------- YES
+    for (let i = 0; i < randomWord.length; i++) {
+        wordCharsSet.add(randomWord.charAt(i));
+    }
+}
+
+
+
 
 
 
@@ -132,24 +142,25 @@ function threeRandoms() { //--------------------------------------- YES
     }
 }
 
-function storeCharIndexes() { //---------------------------------------TO BE APPROVED
+function storeCharIndexes() { //--------------------------------------- YES
     let counter;
     let currentLetter;
 
     let tempRandomWord = [];
     for (let myChar of randomWord.split("")) {
-        tempRandomWord = tempRandomWord.push(myChar);
+        tempRandomWord.push(myChar);
     }
+    //console.log(tempRandomWord);
 
-    let wordCharsSet = [];
+    wordCharsSetClone = [];
     for (let myChar of wordCharsSet) {
-        wordCharsSetClone = wordCharsSetClone.push(myChar);
+        wordCharsSetClone.push(myChar);
     }
+    //console.log(wordCharsSetClone);
 
-    for (let i = 0; i < wordCharsSetClone.length(); i++) {
+    for (let i = 0; i < wordCharsSetClone.length; i++) {
         let tempArrListIndex = [];
-        //line 128, we will index hashset later and get (i)
-        //currentLetter = wordCharsSetClone.ge
+        currentLetter = wordCharsSetClone[i];
         while (true) {
             counter = tempRandomWord.indexOf(currentLetter);
             if (counter == -1) {
@@ -157,9 +168,10 @@ function storeCharIndexes() { //---------------------------------------TO BE APP
                 break;
             }
             tempRandomWord[counter] = "_";
-            tempArrListIndex = tempArrListIndex.push(counter);
+            tempArrListIndex.push(counter);
         }
     }
+    // console.log(charByIndexMap);
 }
 
 function dampenWord() { //--------------------------------------- YES
