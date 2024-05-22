@@ -22,8 +22,12 @@ const randomList = [
 ];
 document.getElementById('userInput').value = "-";
 
+gameOver = 0;
 function printDeadistLevel(gameover) {
-    document.getElementById('hangManPic').src = gameover + '.jpg';
+    console.log("hang 1");
+    document.getElementById('hangManPic').src = gameOver + '.jpg';
+    console.log("hang 2");
+    console.log("hang 3");
     
 }
 
@@ -36,7 +40,7 @@ function input() {
 
 }
 
-gameOver = 0;
+ 
 charByIndexMap = new Map();
 wordCharsSet = new Set();
 userRandomsSet = new Set();
@@ -62,6 +66,7 @@ function theLoop() { //---------------------------------------TO BE APPROVED
             console.log(userRandomWord);
             alert(randomWord + "YOU WIN!!!")
             frontEndButton.style.display = "none"; // makes button disappear
+            alert("you win!!")
             window.stop();
         }
         else {
@@ -77,10 +82,6 @@ function theLoop() { //---------------------------------------TO BE APPROVED
 }
 
 function checkUserCorrecttnesss() { //--------------------------------------- YES
-    if (gameOver< 1) {
-        gameOver = gameOver + 1;
-        return;
-    }
     console.log("checkUserCorrecttnesss has been fired" + gameOver);
     //strUserInput = "t"  //change back to userInput
     strUserInput = document.getElementById('userInput').value;
@@ -112,13 +113,22 @@ function checkUserCorrecttnesss() { //--------------------------------------- YE
             userRandomWord += myChar;
             
         }
-        document.getElementById('userInput').innerText = userRandomWord;
+        document.getElementById('outputHere').innerText = userRandomWord;
         printDeadistLevel();
         console.log("yessssssssss");
+
+        if (userRandomWord == randomWord) {
+            console.log(randomWord);
+            console.log(userRandomWord);
+            alert(randomWord + "YOU WIN!!!")
+            frontEndButton.style.display = "none"; // makes button disappear
+            alert("you win!!")
+            window.stop();
+        }
         
     } else {
         gameOver++;
-        document.getElementById('userInput').innerText = userRandomWord;
+        document.getElementById('outputHere').innerText = userRandomWord;
         printDeadistLevel();
         if (gameOver > 6) {
             console.log("you lose!! " + randomWord);
