@@ -1,3 +1,32 @@
-body {
-    font-family: sans-serif;
+#mainElement{
+    border:0.5px solid black;
+    height: 400px;
+    width: 400px;
+    background-color: cornflowerblue;
+    margin: auto;
 }
+
+.boxes{
+    border:0.5px solid black;
+    display: inline-block;
+    height: 45%;
+    width: 45%;
+    margin: auto;
+    padding-left: 15px;
+    padding-top: 15px;
+    
+}
+
+#firstBorn{
+    background-color: red;
+}
+#secondBorn{
+    background-color: yellow;
+}
+#thirdBorn{
+    background-color: green;
+}
+#fourthBorn{
+    background-color: pink;
+}
+
