@@ -1,1 +1,3 @@
-document.getElementById('hangManPic').src='1.jpg';
+main = document.getElementById('mainElement');
+console.log(main);
+console.dir(main);
