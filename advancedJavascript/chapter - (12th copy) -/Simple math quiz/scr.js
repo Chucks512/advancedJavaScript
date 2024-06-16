@@ -1,55 +1,30 @@
-// declare globals
-var money = 20;
-var lunches = 0;
+game = document.getElementsByTagName("span")
+button = document.querySelector("button")
+button.addEventListener("click", btnClicked);
+game[3].firstElementChild.addEventListener("onchange", changed)
 
-//display lunch budget
-document.getElementById("money").innerHTML = money;
- 
-//listen for order
-document.getElementById("placeOrder").addEventListener("click", buyLunches);
+input = 0;
+result = 0;
 
-/*
-buys specified number of sandwiches per day at current prices
-*/
-function buyLunches() {
-    resetForm();
-    var day = 0;
-    while (money > 0) {
-        day++;
-        var priceToday = getSandwichPrice();
-        var numberOfSandwiches = document.getElementById("numSandwiches").value;
-        var totalPrice = priceToday * numberOfSandwiches;
+function loadQuestion() {
+    //console.log(game);
+    game[0].innerText = Math.floor(Math.random() * 10);
+    game[2].innerText = Math.floor(Math.random() * 10);
+    result = Number(game[0].innerText) + Number(game[2].innerText);
+}
 
+function btnClicked() {
+    input = game[3].firstElementChild.value;
 
-        if (money >= totalPrice) {
-            money = money - totalPrice;
-            lunches++;
-            document.getElementById("receipt").innerHTML += "<p>On day " + day + ", sandwiches are: $" + priceToday + ". You have $" + money.toFixed(2) + " left.</p>";
+    (result == input) ? alert("yay") : alert("nah");
+    (result == input) ? document.body.style.backgroundColor = "green" : document.body.style.backgroundColor = "red";
+    
+    game[3].firstElementChild.value = "";
+}
 
-        } else {
-            document.getElementById("receipt").innerHTML += "<p>Today, sandwiches are: $" + priceToday + ". You don't have enough money. Maybe your sister will give you some of her sandwich.</p>";
-            money = 0;
-        }
-
+function changed(s) {
+    if (document.body.style.backgroundColor != "transparent") {
+        document.body.style.backgroundColor = "transparent";
+        loadQuestion();
     }
-    document.getElementById("receipt").innerHTML += "<p>You bought " + lunches + " lunches this week.</p>";
-
-}
-
-/*
-gets the current price of sandwiches
-*/
-function getSandwichPrice() {
-    var sandwichPrice = (Math.random() * (5 - 1) + 1).toFixed(2);
-    return sandwichPrice;
-}
-
-/*
-resets the game so that a new order can be placed
-*/
-function resetForm() {
-    money = 20;
-    lunches = 0;
-    document.getElementById("receipt").innerHTML = "";
-
 }
