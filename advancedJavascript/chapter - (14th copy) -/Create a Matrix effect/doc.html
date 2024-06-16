@@ -1,26 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="sty.css" />
-    <title>Document</title>
-</head>
-<body>
-    <h1>Lunch Game!</h1>
+<!doctype html>
+<html>
 
-<div id="instructions">
-    <p>You get a weekly allowance of $<span id="money"></span> to buy lunch. Sandwiches are always between $1 and $5, but you never know the price until you get to school.</p>
-    <p>Your goal is to be able to buy lunch every day of the week.</p>
-</div>
-<div id="orderForm">
-    <label>How many sandwiches do you want per day?
-        <br />
-        <input type="number" id="numSandwiches" />
-    </label>
-    <button type="button" id="placeOrder">Place Order</button>
-</div>
-<div id="receipt"></div>
-<script src="scr.js"></script>
+<head>
+    <title>Canvas HTML5</title>
+</head>
+
+<body>
+    <div class="output"></div>
+    <script>
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.setAttribute("width", "500");
+        canvas.setAttribute("height", "300");
+        document.body.prepend(canvas);
+        const colVal = [];
+        for (let x = 0; x < 50; x++) {
+            colVal.push(0);
+        }
+        function matrix() {
+            ctx.fillStyle = "rgba(0,0,0,.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "green";
+            colVal.map((posY, index) => {
+                let output = Math.random() < 0.5 ? 0 : 1;
+                let posX = (index * 10) + 10;
+                ctx.fillText(output, posX, posY);
+                if (posY > 100 + Math.random() * 300) {
+                    colVal[index] = 0;
+                } else {
+                    colVal[index] = posY + 10;
+                }
+            });
+        }
+        setInterval(matrix, 50);
+    </script>
 </body>
+
 </html>
