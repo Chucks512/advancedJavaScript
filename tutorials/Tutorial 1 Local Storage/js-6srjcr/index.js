@@ -1,15 +1,15 @@
-import './index.css';
+//import './index.css';
 
 
 const localTodoTasksArray = [];
-const localTodosContainer = document.getElementById('local-storage-todos-container');
-const localInputEle = document.getElementById('local-storage-todo-input-ele');
-const localAddTaskBtn = document.getElementById('local-storage-add-task-btn');
+const localTodosContainer = document.getElementById('local-storage-todos-container');//list
+const localInputEle = document.getElementById('local-storage-todo-input-ele');//inputbox
+const localAddTaskBtn = document.getElementById('local-storage-add-task-btn');//button
 // local storage above, session storage below---------------------------------------
 const sessionTodoTasksArray = [];
-const sessionTodosContainer = document.getElementById('session-storage-todos-container');
-const sessionInputEle = document.getElementById('session-storage-todo-input-ele');
-const sessionAddTaskBtn = document.getElementById('session-storage-add-task-btn');
+const sessionTodosContainer = document.getElementById('session-storage-todos-container');//list
+const sessionInputEle = document.getElementById('session-storage-todo-input-ele');//inputbox
+const sessionAddTaskBtn = document.getElementById('session-storage-add-task-btn');//button
 
 
 
@@ -38,7 +38,7 @@ function createTodoLiElements(todoArray, sectionType) {
     checkboxEle.setAttribute('id', `${sectionType}-chbx-${index}`);
 
     // Add 1 attribute to the <label> element:
-    labelEle.setAttribute('for', `${sectionType}-chbx-${index}`);
+    labelEle.setAttribute('for', `${sectionType}-chbx-${index}`);//for = which form is parent
 
     // Add a click event to the <input> element:
     checkboxEle.addEventListener('click', (e) => {
@@ -62,7 +62,7 @@ localAddTaskBtn.addEventListener('click', () => {
   const newTodoInfo = { checked: false, text: localInputEle.value };
   localTodoTasksArray.push(newTodoInfo);
 
-  const todoLiElements = createTodoLiElements(localTodoTasksArray, 'local');
+  const todoLiElements = createTodoLiElements(localTodoTasksArray, 'local');//main function fired
   localTodosContainer.replaceChildren(...todoLiElements);
   localInputEle.value = '';
 });
@@ -72,7 +72,59 @@ sessionAddTaskBtn.addEventListener('click', () => {
   const newTodoInfo = { checked: false, text: sessionInputEle.value };
   sessionTodoTasksArray.push(newTodoInfo);
 
-  const todoLiElements = createTodoLiElements(sessionTodoTasksArray, 'session');
+  const todoLiElements = createTodoLiElements(sessionTodoTasksArray, 'session');//main function fired
+  /*
+  test both storages first
+  get initial upload if list is existent - use onload(), try using it in js this time... body/document.onload()...
+  use chbx event listener to change whats in storage
+  per new item, reload from storage
+  */
   sessionTodosContainer.replaceChildren(...todoLiElements);
   sessionInputEle.value = '';
 });
+/*
+//input box, to storage, to frontEnd
+//onload first
+
+
+
+
+
+
+
+// Store myBio object inside the browser's session storage object:
+sessionStorage.setItem("myBio", { name: "Oluwatobi" });
+// Log the session storage object to the console:
+console.log(sessionStorage);
+// The invocation above will return:
+{myBio: "[object Object]", length: 1}
+//___________________________________________________________
+//---------------------------------------------------------||
+// Store myBio object inside the browser's session storage object:
+sessionStorage.setItem("myBio", JSON.stringify({ name: "Oluwatobi" }));
+// Log the session storage object to the console:
+console.log(sessionStorage);
+// The invocation above will return:
+{myBio: '{"name":"Oluwatobi"}', length: 1}
+
+//notations
+sessionStorage.bestColor = "Green";
+sessionStorage["bestColor"] = "Green";
+sessionStorage.setItem("bestColor", "Green");
+
+//functions applied
+webStorageObject.setItem(key, value); //whatever storage you want
+webStorageObject.key(index);
+webStorageObject.getItem(key);
+webStorageObject.length;
+webStorageObject.removeItem(key);
+webStorageObject.clear();
+
+//functions named
+setItem()
+key()
+getItem()
+length
+removeItem()
+clear()
+*/
