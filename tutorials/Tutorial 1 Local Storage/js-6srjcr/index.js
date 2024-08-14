@@ -128,3 +128,15 @@ length
 removeItem()
 clear()
 */
+
+
+
+
+
+
+
+
+
+
+
+//-------------tickboxes lose data after every entry and refresh, will fix in due time
