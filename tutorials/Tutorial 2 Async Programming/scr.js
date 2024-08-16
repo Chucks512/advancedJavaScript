@@ -1,47 +1,52 @@
-//userInput = prompt("enter number input");
-userInput = "4";
+userInput = prompt("enter number input");
+//userInput = "3";
 
 switch (userInput) {
     case "1":
-        alert("delay is 3 seconds");
-        setTimeout(funcCallback, 3000)
+        // Declare function
+        function fetchData(callback) {
+            setTimeout(() => {
+                const data = { name: "John", age: 30 };
+                callback(data);
+            }, 3000);
+        }
+
+        // Execute function with a callback
+        fetchData(function (data) {
+            alert(JSON.stringify(data));
+        });
+
+        alert("Data is being fetched...");
         break;
     case "2":
-        myNum = prompt("provide random integer");
-        isEven(myNum);
-    case "3":
-        async function f() {//yes this is bad code, i know, but me needs a nap & a meal
-            let promise = new Promise((resolve, reject) => {
-                setTimeout(() => resolve("done!"), 1000)
+        // Initialize a promise
+        const myPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Hello from the promise!");
+            }, 2000);
+        });
+        myPromise
+            .then((result) => {
+                alert(result);
+            })
+            .catch((error) => {
+                alert(error);
+            })
+            .finally(() => {
+                //code here will be executed regardless of the status
+                //of a promise (fulfilled or rejected)
             });
-            let result = await promise; // wait until the promise resolves (*)
-            alert(result); // "done!"
+        break;
+    case "3":
+        async function getData() {
+            const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+            const data = await response.json();
+            alert(JSON.stringify(data));
         }
-        f();
+
+        getData();
         break;
     default:
         alert("input invalid - end of program")
         break;
-}
-//------------------------------------------------
-function funcCallback() {
-    alert("delay complete");
-}
-function isEven(myNum) {
-    function myDisplayer(myOutput) {
-        alert(myOutput);
-    }
-    let myPromise = new Promise(function (myResolve, myReject) {
-        let x = myNum;
-
-        if (x % 2 == 0) {
-            myResolve("The number is even.");
-        } else {
-            myReject("The number is odd.");
-        }
-    });
-    myPromise.then(
-        function (value) { myDisplayer(value); },
-        function (error) { myDisplayer(error); }
-    );
 }
