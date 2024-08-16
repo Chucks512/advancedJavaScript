@@ -1,4 +1,5 @@
-userInput = prompt("enter number input");
+//userInput = prompt("enter number input");
+userInput = "4";
 
 switch (userInput) {
     case "1":
