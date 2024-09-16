@@ -40,7 +40,7 @@ function input() {
 
 }
 
- 
+
 charByIndexMap = new Map();
 wordCharsSet = new Set();
 userRandomsSet = new Set();
@@ -50,7 +50,7 @@ wordCharsSetClone = [];
 let strUserInput = "";
 
 function StringHandler() { //---------------------------------------TO BE APPROVED
-    randomWord = getRandomWord(randomList);
+    randomWord = getRandomWord(randomList);//------
     randomWord = randomWord.toUpperCase();
     wordToHashSet();
     threeRandoms();

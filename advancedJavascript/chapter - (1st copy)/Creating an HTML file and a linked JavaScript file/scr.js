@@ -1,3 +1,1 @@
-/*
-* console.log("Thaelo Machaka");
-*/
+console.log("Thapelo Machaka");

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>---SAULE/MP3</p>
+    <audio controls autoplay>
+        <source src="SAULE.MP3">
+    </audio>
+
+    <p>Autumn Leaves/MP3</p>
+    <audio controls>
+        <source src="Autumn Leaves.mp3">
+    </audio>
+
+    <button class="button button2">Blue</button>
+
+    <script>
+        console.log("kgotso");
+
+        let ply = document.getElementsByTagName("audio");
+        ply = ply[0];
+
+        let btn = document.getElementsByTagName("button");
+        btn = btn[0];
+        btn.addEventListener("click", myFunction);
+
+        function myFunction() {
+            ply.play();
+            ply = document.getElementsByTagName("audio");
+            ply = ply[1];
+            ply.play();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,12 +1,14 @@
 userInput = prompt("enter a number less than 10");
-
+addOne(userInput)
+userInput = parseInt(userInput);
 
 function addOne(userInput) {
-    while (userInput <= 10) {
-        userInput++;
+    if (userInput <= 10) {
         console.log(userInput);
+        userInput++;
+        addOne(userInput)  
     }
 }
 
-addOne(userInput)
+
 
