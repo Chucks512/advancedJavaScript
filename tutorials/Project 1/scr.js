@@ -153,6 +153,11 @@ playRootBtn.addEventListener('click', playRoot);
 function playRoot() {
     console.log("rooot!");
 
+    var rootSoundOff = document.getElementById("firstPlayer");
+    rootSoundOff.src = fileName; //"audioFiles/"+
+    rootSoundOff.play();
+
+
     // var modBtn = document.getElementById("modulateButton");
 // object.addEventListener("change", myScript);
 }
