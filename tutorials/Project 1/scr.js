@@ -161,24 +161,7 @@ function playRoot() {
     setScales();
     pianorize();
 }
-/*
-function setButtons() {
-    console.log("ola");
 
-    for (let index = 1; index <= 8; index++) {
-        console.log(index);
-        var tempButton = document.getElementById("note"+index);
-        tempButton.addEventListener('click', playSound);
-        function playSound() {
-            newSound = notes[ parseInt(notes[keyIndex]) + parseInt(intervals[index]) ];
-            newSound = newSound+".mp3";
-            console.log(newSound);
-            rootSoundOff.src = newSound;
-            rootSoundOff.play();
-        }
-    }
-}
-*/
 
 //use function to set array string to new file names
 
@@ -210,3 +193,5 @@ function pianorize() {
         }
     }
 }
+
+// all works, just make the randomizer and scorekeeper
