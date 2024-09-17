@@ -181,7 +181,7 @@ function setScales() {
 }
 
 //add async await from player controls, wait for it to pause before accepting inputs
-
+var pianorizeArray = [];
 function pianorize() {
     for (let index = 1; index <= 8; index++) {
         var tempButton = document.getElementById("note" + index);
@@ -190,9 +190,16 @@ function pianorize() {
             newSound = scaleFiles[index]
             rootSoundOff.src = newSound;
             rootSoundOff.play();
-        }
+            pianorizeArray[index] = tempButton;//why aint it working???????????
+        }  
     }
+    console.log(pianorizeArray);
+    
 }
+
+
+
+
 
 // all works, just make the randomizer and scorekeeper
 // how to make a html button press itself
