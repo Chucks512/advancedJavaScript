@@ -76,18 +76,18 @@ var notes = [
 ];
 
 var intervals = ['empty interval',
-'0',
-'2',
-'4',
-'5',
-'7',
-'9',
-'11',
-'12'
+    '0',
+    '2',
+    '4',
+    '5',
+    '7',
+    '9',
+    '11',
+    '12'
 ];
 
 
-//key selector
+//key selector----------------------------------------
 var min = 1,
     max = 7,
     keySelect = document.getElementById('keySelector');
@@ -97,13 +97,14 @@ for (var i = min; i <= max; i++) {
     opt.innerHTML = String.fromCharCode(64 + i);
     keySelect.appendChild(opt);
 }
-
-keySelect.addEventListener("change", keyValue);
+keySelect.addEventListener("change", keyValue); //test key change
 function keyValue(params) {
     //console.log(keySelect.value);
 }
 
-//octave selector
+
+
+//octave selector--------------------------------------
 var min = 1,
     max = 6,
     octaveSelect = document.getElementById('octaveSelector');
@@ -113,17 +114,15 @@ for (var i = min; i <= max; i++) {
     opt.innerHTML = i;
     octaveSelect.appendChild(opt);
 }
-
-octaveSelect.addEventListener("change", octValue);
+octaveSelect.addEventListener("change", octValue); //test octave change
 function octValue(params) {
     //console.log(octaveSelect.value);
 }
 
 
-// activate flat note
+// activate flat note---------------------------------------
 var checkBox = document.getElementById("flatCheck");
 checkBox.addEventListener("click", checkFunc)
-
 function checkFunc() {
     if (checkBox.checked == true) {
         //console.log("checked");
@@ -132,41 +131,84 @@ function checkFunc() {
     }
 }
 
-// var modBtn = document.getElementById("modulateButton");
-// object.addEventListener("change", myScript);
 
-// modulate button
-
+// modulate button--------------------------------------------
 var modBtn = document.getElementById("modulateButton");
 modBtn.addEventListener('click', newKey);
-
+var keyIndex;
 function newKey() {
-    
     getKey = keySelect.value + octaveSelect.value;
     isFlat = checkBox.checked;
-    
-    var keyIndex = getKey;
+
+    keyIndex = getKey;
     keyIndex = notes.indexOf(keyIndex);
-    //keyIndex++;
 
     if (isFlat == true) {
         keyIndex--;
     }
     fileName = notes[keyIndex] + ".mp3";
     console.log(fileName);
-    //array incremental scale
 }
 
+// play root button----------------------------------------
+var rootSoundOff;
 var playRootBtn = document.getElementById("playRootButton");
 playRootBtn.addEventListener('click', playRoot);
 function playRoot() {
-
     var rootSoundOff = document.getElementById("firstPlayer");
-    rootSoundOff.src = fileName; //"audioFiles/"+
+    rootSoundOff.src = fileName;
     rootSoundOff.play();
+    setScales();
+    pianorize();
+}
+/*
+function setButtons() {
+    console.log("ola");
 
+    for (let index = 1; index <= 8; index++) {
+        console.log(index);
+        var tempButton = document.getElementById("note"+index);
+        tempButton.addEventListener('click', playSound);
+        function playSound() {
+            newSound = notes[ parseInt(notes[keyIndex]) + parseInt(intervals[index]) ];
+            newSound = newSound+".mp3";
+            console.log(newSound);
+            rootSoundOff.src = newSound;
+            rootSoundOff.play();
+        }
+    }
+}
+*/
 
-    // var modBtn = document.getElementById("modulateButton");
-// object.addEventListener("change", myScript);
+//use function to set array string to new file names
+
+//steps ------- function for interval names, play function for test, randomizer if wrong
+
+var scaleFiles = ['empty slot'];
+
+function setScales() {
+    //console.log(keyIndex);
+
+    for (let index = 1; index <= 8; index++) {
+        scaleFiles[index] = parseInt(keyIndex) + parseInt(intervals[index]);
+        scaleFiles[index] = notes[scaleFiles[index]];
+        scaleFiles[index] = scaleFiles[index] + ".mp3";
+    }
+    console.log(scaleFiles);
 }
 
+//add async await from player controls, wait for it to pause before accepting inputs
+
+function pianorize() {
+    for (let index = 1; index <= 8; index++) {
+        var tempButton = document.getElementById("note" + index);
+        tempButton.addEventListener('click', playSound);
+        function playSound() {
+            newSound = notes[parseInt(notes[keyIndex]) + parseInt(intervals[index])];
+            newSound = newSound + ".mp3";
+            console.log(newSound);
+            rootSoundOff.src = newSound;
+            rootSoundOff.play();
+        }
+    }
+}
