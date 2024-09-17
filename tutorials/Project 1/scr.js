@@ -191,6 +191,7 @@ function pianorize() {
             rootSoundOff.src = newSound;
             rootSoundOff.play();
             pianorizeArray[index] = tempButton;//why aint it working???????????
+            // i pressed the flat check button mid-testing and something changed, look into it
         }  
     }
     console.log(pianorizeArray);
