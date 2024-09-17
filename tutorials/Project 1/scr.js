@@ -121,6 +121,7 @@ function checkFunc() {
     }
 }
 
+// var modBtn = document.getElementById("modulateButton");
 // object.addEventListener("change", myScript);
 
 // modulate button
@@ -144,9 +145,15 @@ function newKey() {
     }
     fileName = notes[keyIndex] + ".mp3";
     console.log(fileName);
-
-    
-
-    
-    //array scale
+    //array incremental scale
 }
+
+var playRootBtn = document.getElementById("playRootButton");
+playRootBtn.addEventListener('click', playRoot);
+function playRoot() {
+    console.log("rooot!");
+
+    // var modBtn = document.getElementById("modulateButton");
+// object.addEventListener("change", myScript);
+}
+
