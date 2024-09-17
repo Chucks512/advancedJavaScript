@@ -155,7 +155,7 @@ var rootSoundOff;
 var playRootBtn = document.getElementById("playRootButton");
 playRootBtn.addEventListener('click', playRoot);
 function playRoot() {
-    var rootSoundOff = document.getElementById("firstPlayer");
+    rootSoundOff = document.getElementById("firstPlayer");
     rootSoundOff.src = fileName;
     rootSoundOff.play();
     setScales();
@@ -204,9 +204,7 @@ function pianorize() {
         var tempButton = document.getElementById("note" + index);
         tempButton.addEventListener('click', playSound);
         function playSound() {
-            newSound = notes[parseInt(notes[keyIndex]) + parseInt(intervals[index])];
-            newSound = newSound + ".mp3";
-            console.log(newSound);
+            newSound = scaleFiles[index]
             rootSoundOff.src = newSound;
             rootSoundOff.play();
         }
