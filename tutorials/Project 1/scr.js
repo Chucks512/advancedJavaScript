@@ -195,3 +195,4 @@ function pianorize() {
 }
 
 // all works, just make the randomizer and scorekeeper
+// how to make a html button press itself
