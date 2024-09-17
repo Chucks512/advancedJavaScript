@@ -75,6 +75,17 @@ var notes = [
     'C7',
 ];
 
+var intervals = ['empty interval',
+'0',
+'2',
+'4',
+'5',
+'7',
+'9',
+'11',
+'12'
+];
+
 
 //key selector
 var min = 1,
@@ -133,8 +144,6 @@ function newKey() {
     
     getKey = keySelect.value + octaveSelect.value;
     isFlat = checkBox.checked;
-    console.log(getKey + ""+ isFlat);
-    console.log("------------above is good");
     
     var keyIndex = getKey;
     keyIndex = notes.indexOf(keyIndex);
@@ -151,7 +160,6 @@ function newKey() {
 var playRootBtn = document.getElementById("playRootButton");
 playRootBtn.addEventListener('click', playRoot);
 function playRoot() {
-    console.log("rooot!");
 
     var rootSoundOff = document.getElementById("firstPlayer");
     rootSoundOff.src = fileName; //"audioFiles/"+
