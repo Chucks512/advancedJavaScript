@@ -1,40 +1,152 @@
-var min = 12,
-    max = 100,
-    select = document.getElementById('keySelector');
+var notes = [
+    'B0',
+    'C1',
+    'Db1',
+    'D1',
+    'Eb1',
+    'E1',
+    'F1',
+    'Gb1',
+    'G1',
+    'Ab1',
+    'A1',
+    'Bb1',
+    'B1',
+    'C2',
+    'Db2',
+    'D2',
+    'Eb2',
+    'E2',
+    'F2',
+    'Gb2',
+    'G2',
+    'Ab2',
+    'A2',
+    'Bb2',
+    'B2',
+    'C3',
+    'Db3',
+    'D3',
+    'Eb3',
+    'E3',
+    'F3',
+    'Gb3',
+    'G3',
+    'Ab3',
+    'A3',
+    'Bb3',
+    'B3',
+    'C4',
+    'Db4',
+    'D4',
+    'Eb4',
+    'E4',
+    'F4',
+    'Gb4',
+    'G4',
+    'Ab4',
+    'A4',
+    'Bb4',
+    'B4',
+    'C5',
+    'Db5',
+    'D5',
+    'Eb5',
+    'E5',
+    'F5',
+    'Gb5',
+    'G5',
+    'Ab5',
+    'A5',
+    'Bb5',
+    'B5',
+    'C6',
+    'Db6',
+    'D6',
+    'Eb6',
+    'E6',
+    'F6',
+    'Gb6',
+    'G6',
+    'Ab6',
+    'A6',
+    'Bb6',
+    'B6',
+    'C7',
+];
 
-for (var i = min; i<=max; i++){
+
+//key selector
+var min = 1,
+    max = 7,
+    keySelect = document.getElementById('keySelector');
+for (var i = min; i <= max; i++) {
+    var opt = document.createElement('option');
+    opt.value = String.fromCharCode(64 + i);
+    opt.innerHTML = String.fromCharCode(64 + i);
+    keySelect.appendChild(opt);
+}
+
+keySelect.addEventListener("change", keyValue);
+function keyValue(params) {
+    //console.log(keySelect.value);
+}
+
+//octave selector
+var min = 1,
+    max = 6,
+    octaveSelect = document.getElementById('octaveSelector');
+for (var i = min; i <= max; i++) {
     var opt = document.createElement('option');
     opt.value = i;
     opt.innerHTML = i;
-    select.appendChild(opt);
+    octaveSelect.appendChild(opt);
 }
 
-/*----------------- */
-
-// since 97 is the ascii value for 'a', and your value for 'a' is 3, you need to do this to get the value of the integer converted to a character:
-
-if(i>=3){
-    String.fromCharCode(94 + i);
+octaveSelect.addEventListener("change", octValue);
+function octValue(params) {
+    //console.log(octaveSelect.value);
 }
 
-//------------------
 
-// You can use the String.fromCharCode(x) function for this, you just need to pass the proper index (eg: 97 = a, 98 = b)
+// activate flat note
+var checkBox = document.getElementById("flatCheck");
+checkBox.addEventListener("click", checkFunc)
 
-const numberA = 1; // 1 = A, 2 = B,...., 26 = Z
-const numberB = 2; 
+function checkFunc() {
+    if (checkBox.checked == true) {
+        //console.log("checked");
+    } else {
+        //console.log("unchecked");
+    }
+}
 
+// object.addEventListener("change", myScript);
 
-//lowercase (start in CharCode 97)
-console.log( String.fromCharCode(96 + numberA) ); //a
-console.log( String.fromCharCode(96 + numberB) ); //b
-   
+// modulate button
 
-console.log("------------");
+var modBtn = document.getElementById("modulateButton");
+modBtn.addEventListener('click', newKey);
 
+function newKey() {
+    
+    getKey = keySelect.value + octaveSelect.value;
+    isFlat = checkBox.checked;
+    console.log(getKey + ""+ isFlat);
+    console.log("------------above is good");
+    
+    var keyIndex = getKey;
+    keyIndex = notes.indexOf(keyIndex);
+    //keyIndex++;
 
-//uppercase (start in CharCode 65)
-console.log( String.fromCharCode(64 + numberA) ); //A
-console.log( String.fromCharCode(64 + numberB) ); //B
+    if (isFlat == true) {
+        keyIndex--;
+    }
+    fileName = notes[keyIndex] + ".mp3";
+    console.log(fileName);
 
+    
 
+    
+    //array scale
+}
