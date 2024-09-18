@@ -75,6 +75,7 @@ var notes = [ //note names
     'C7',
 ];
 
+
 var intervals = ['empty interval', //intervals from root note
     '0',
     '2',
@@ -103,7 +104,6 @@ function keyValue(params) {
 }
 
 
-
 //octave selector--------------------------------------
 var min = 1, //octaves 1 till 6 will be used
     max = 6,
@@ -120,25 +120,11 @@ function octValue(params) {
 }
 
 
-// activate flat note--------------------------------------- remove code block after completing proj
-/*
-var checkBox = document.getElementById("flatCheck");
-checkBox.addEventListener("click", checkFunc)
-function checkFunc() {
-    if (checkBox.checked == true) {
-        //console.log("checked");
-    } else {
-        //console.log("unchecked");
-    }
-}
-*/
-
-
-var checkBox = document.getElementById("flatCheck"); //check box for flat note
 // modulate button--------------------------------------------
 var modBtn = document.getElementById("modulateButton"); // modulate button set to object
 modBtn.addEventListener('click', setNewKeyIndex); // event listener added to object
 var keyIndex; //index of the key`s root note
+var checkBox = document.getElementById("flatCheck"); //check box for flat note
 function setNewKeyIndex() {
     getKey = keySelect.value + octaveSelect.value; //set natural key to a string
     keyIndex = notes.indexOf(getKey); //get index
@@ -147,85 +133,64 @@ function setNewKeyIndex() {
     if (isFlat == true) {
         keyIndex--; //drop by one semitone if flat is checked
     }
+    setScales(); //new key intervals to new array
+    pianorize(); // set button sounds to new scale
 }
 
+
+// turns the index of the note to a filename
 function indexToFileName(tempIndex) {
     fileName = notes[tempIndex] + ".mp3"; //name of src(source) file
     return fileName;
 }
 
 // play root button----------------------------------------
-var rootSoundOff;
 var playRootBtn = document.getElementById("playRootButton"); // playRootButton set to object
 playRootBtn.addEventListener('click', playRoot); // eventListener added
 function playRoot() {
-    tempAudio(indexToFileName(keyIndex));
-    setScales();
-    /*
-    rootSoundOff = document.getElementById("firstPlayer");
-    rootSoundOff.src = fileName;
-    rootSoundOff.play();
-    */
-    //rootSoundOff.mute = true;
-    pianorize();
-    //rootSoundOff.mute = false;
-    myInterval = setInterval(start3secPlay(), 3000);
+    tempAudio(indexToFileName(keyIndex)); //plays root note
 }
 
 
-//use function to set array string to new file names
-
-//steps ------- function for interval names, play function for test, randomizer if wrong
-
+//assigns indexes to a new key
 var scaleFiles = ['empty slot'];
-
 function setScales() {
-    //console.log(keyIndex);
-
     for (let index = 1; index <= 8; index++) {
-        scaleFiles[index] = parseInt(keyIndex) + parseInt(intervals[index]);
-        /*scaleFiles[index] = notes[scaleFiles[index]];
-        scaleFiles[index] = scaleFiles[index] + ".mp3";*/
+        scaleFiles[index] = parseInt(keyIndex) + parseInt(intervals[index]); // set new index per scale interval
     }
-    //console.log(scaleFiles);
 }
 
-//add async await from player controls, wait for it to pause before accepting inputs
-var pianorizeArray = [];
+
+//provides sounds to interval buttons
+var pianorizeArray = []; //instantiate array
 function pianorize() {
     for (let index = 1; index <= 8; index++) {
-        var tempButton = document.getElementById("note" + index);
-        tempButton.addEventListener('click', playSound);
+        var tempButton = document.getElementById("note" + index); //get button
+        tempButton.addEventListener('click', playSound); // add eventListener
         function playSound() {
-            tempAudio(indexToFileName(scaleFiles[index]));
-            /*
-            newSound = scaleFiles[index]
-            rootSoundOff.src = newSound;
-            //rootSoundOff.play();
-            var playPromise = rootSoundOff.play();
-
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // Automatic playback started!
-                    // Show playing UI.
-                    // We can now safely pause video...
-                    rootSoundOff.play();
-                })
-                    .catch(error => {
-                        rootSoundOff.play();
-                    });
-            }
-            */
-            pianorizeArray[index] = tempButton;//why aint it working???????????
-            //console.log(index + " ----pianorized");
-            // i pressed the flat check button mid-testing and something changed, look into it
-
+            tempAudio(indexToFileName(scaleFiles[index])); //play audio
+            pianorizeArray[index] = tempButton; // add button to  array
         }
-        //tempButton.click();
-
     }
-    //console.log(pianorizeArray);
+}
 
+
+//check how many audios are there via get elemt by tag or query selector
+//plays and the self destructs
+var testBtn = document.getElementById("testButton");
+testBtn.addEventListener('click', tempAudio);
+function tempAudio(sourceFile) {
+    console.log("func launched");
+    virtAudio = document.createElement("audio");
+    virtAudio.controls = true;
+    document.body.appendChild(virtAudio);
+    virtAudio.src = sourceFile;
+    virtAudio.play();
+    setTimeout(() => {
+        document.body.removeChild(document.body.lastElementChild);
+        //document.body.remove( virtAudio );
+        delete virtAudio;
+    }, 3000);
 }
 
 
@@ -250,19 +215,3 @@ function start3secPlay() {
 }
 
 
-
-var testBtn = document.getElementById("testButton");
-testBtn.addEventListener('click', tempAudio);
-
-function tempAudio(sourceFile) {
-    console.log("func launched");
-    virtAudio = document.createElement("audio");
-    virtAudio.controls = true;
-    document.body.appendChild(virtAudio);
-    virtAudio.src = sourceFile;
-    virtAudio.play();
-    setTimeout(() => {
-        document.body.removeChild(document.body.lastElementChild);
-        delete virtAudio;
-    }, 3000);
-}
