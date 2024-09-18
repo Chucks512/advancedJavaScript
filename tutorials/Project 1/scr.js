@@ -159,16 +159,16 @@ var rootSoundOff;
 var playRootBtn = document.getElementById("playRootButton"); // playRootButton set to object
 playRootBtn.addEventListener('click', playRoot); // eventListener added
 function playRoot() {
-    tempAudio(indexToFileName(keyIndex))
+    tempAudio(indexToFileName(keyIndex));
     setScales();
     /*
     rootSoundOff = document.getElementById("firstPlayer");
     rootSoundOff.src = fileName;
     rootSoundOff.play();
     */
-    rootSoundOff.mute = true;
+    //rootSoundOff.mute = true;
     pianorize();
-    rootSoundOff.mute = false;
+    //rootSoundOff.mute = false;
     myInterval = setInterval(start3secPlay(), 3000);
 }
 
@@ -197,6 +197,8 @@ function pianorize() {
         var tempButton = document.getElementById("note" + index);
         tempButton.addEventListener('click', playSound);
         function playSound() {
+            tempAudio(indexToFileName(scaleFiles[index]));
+            /*
             newSound = scaleFiles[index]
             rootSoundOff.src = newSound;
             //rootSoundOff.play();
@@ -213,10 +215,11 @@ function pianorize() {
                         rootSoundOff.play();
                     });
             }
+            */
             pianorizeArray[index] = tempButton;//why aint it working???????????
             //console.log(index + " ----pianorized");
-
             // i pressed the flat check button mid-testing and something changed, look into it
+
         }
         //tempButton.click();
 
