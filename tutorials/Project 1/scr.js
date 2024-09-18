@@ -147,7 +147,7 @@ function newKey() {
         keyIndex--;
     }
     fileName = notes[keyIndex] + ".mp3";
-    console.log(fileName);
+    //console.log(fileName);
 }
 
 // play root button----------------------------------------
@@ -159,7 +159,9 @@ function playRoot() {
     rootSoundOff.src = fileName;
     rootSoundOff.play();
     setScales();
+    rootSoundOff.mute = true;
     pianorize();
+    rootSoundOff.mute = false;
 }
 
 
@@ -177,7 +179,7 @@ function setScales() {
         scaleFiles[index] = notes[scaleFiles[index]];
         scaleFiles[index] = scaleFiles[index] + ".mp3";
     }
-    console.log(scaleFiles);
+    //console.log(scaleFiles);
 }
 
 //add async await from player controls, wait for it to pause before accepting inputs
@@ -189,13 +191,30 @@ function pianorize() {
         function playSound() {
             newSound = scaleFiles[index]
             rootSoundOff.src = newSound;
-            rootSoundOff.play();
+            //rootSoundOff.play();
+            var playPromise = rootSoundOff.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Automatic playback started!
+                    // Show playing UI.
+                    // We can now safely pause video...
+                    rootSoundOff.play();
+                })
+                    .catch(error => {
+                        rootSoundOff.play();
+                    });
+            }
             pianorizeArray[index] = tempButton;//why aint it working???????????
+            //console.log(index + " ----pianorized");
+
             // i pressed the flat check button mid-testing and something changed, look into it
-        }  
+        }
+        //tempButton.click();
+
     }
-    console.log(pianorizeArray);
-    
+    //console.log(pianorizeArray);
+
 }
 
 
@@ -204,3 +223,7 @@ function pianorize() {
 
 // all works, just make the randomizer and scorekeeper
 // how to make a html button press itself
+
+
+myInterval = setInterval(function, milliseconds);
+clearInterval(myInterval);
