@@ -1,3 +1,17 @@
+
+  
+  var testBtn = document.getElementById("testButton");
+  testBtn.addEventListener('click', tempAudio);
+  
+  function tempAudio() {
+      console.log("func launched");
+      virtAudio = document.createElement("audio");
+      virtAudio.controls = true;
+      document.body.appendChild(virtAudio);
+      setTimeout(() => {document.body.removeChild( document.body.lastElementChild )}, 3000)
+      ;
+  }
+//let numb = document.getElementById("myDIV").childNodes.length;
 var notes = [
     'B0',
     'C1',
@@ -162,6 +176,7 @@ function playRoot() {
     rootSoundOff.mute = true;
     pianorize();
     rootSoundOff.mute = false;
+    myInterval = setInterval(start3secPlay(), 3000);
 }
 
 
@@ -224,6 +239,18 @@ function pianorize() {
 // all works, just make the randomizer and scorekeeper
 // how to make a html button press itself
 
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
-myInterval = setInterval(function, milliseconds);
-clearInterval(myInterval);
+var randomInt = randomIntFromInterval(1, 8);
+//console.log(rndInt);
+
+//clearInterval(myInterval);
+function start3secPlay() {
+    pianorizeArray[randomIntFromInterval(1, 8)].click();
+
+
+}
+
+
