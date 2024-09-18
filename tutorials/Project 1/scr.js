@@ -175,8 +175,13 @@ function pianorize() {
 }
 
 
+
+
+
 //check how many audios are there via get elemt by tag or query selector
 //plays and the self destructs
+
+//----------------USE AUTO-INCREMENT ID FOR EVERY AUDIO ELEMENT THEN REFER TO IT FOR DELETE
 var testBtn = document.getElementById("testButton");
 testBtn.addEventListener('click', tempAudio);
 function tempAudio(sourceFile) {
