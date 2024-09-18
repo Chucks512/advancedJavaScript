@@ -1,18 +1,4 @@
-
-  
-  var testBtn = document.getElementById("testButton");
-  testBtn.addEventListener('click', tempAudio);
-  
-  function tempAudio() {
-      console.log("func launched");
-      virtAudio = document.createElement("audio");
-      virtAudio.controls = true;
-      document.body.appendChild(virtAudio);
-      setTimeout(() => {document.body.removeChild( document.body.lastElementChild )}, 3000)
-      ;
-  }
-//let numb = document.getElementById("myDIV").childNodes.length;
-var notes = [
+var notes = [ //note names
     'B0',
     'C1',
     'Db1',
@@ -89,7 +75,7 @@ var notes = [
     'C7',
 ];
 
-var intervals = ['empty interval',
+var intervals = ['empty interval', //intervals from root note
     '0',
     '2',
     '4',
@@ -102,16 +88,16 @@ var intervals = ['empty interval',
 
 
 //key selector----------------------------------------
-var min = 1,
+var min = 1, //notes A till G will be used ... ascii A = 65
     max = 7,
-    keySelect = document.getElementById('keySelector');
+    keySelect = document.getElementById('keySelector'); //retrieves frontend <select> element
 for (var i = min; i <= max; i++) {
-    var opt = document.createElement('option');
-    opt.value = String.fromCharCode(64 + i);
-    opt.innerHTML = String.fromCharCode(64 + i);
-    keySelect.appendChild(opt);
+    var opt = document.createElement('option'); //an additional option created
+    opt.value = String.fromCharCode(64 + i);     // converts ascii to string then assigns it
+    opt.innerHTML = String.fromCharCode(64 + i); // converts ascii to string then assigns it
+    keySelect.appendChild(opt); // option is included in the <select>
 }
-keySelect.addEventListener("change", keyValue); //test key change
+keySelect.addEventListener("change", keyValue); //to test key change
 function keyValue(params) {
     //console.log(keySelect.value);
 }
@@ -119,22 +105,23 @@ function keyValue(params) {
 
 
 //octave selector--------------------------------------
-var min = 1,
+var min = 1, //octaves 1 till 6 will be used
     max = 6,
-    octaveSelect = document.getElementById('octaveSelector');
+    octaveSelect = document.getElementById('octaveSelector'); //retrieves frontend <select> element
 for (var i = min; i <= max; i++) {
-    var opt = document.createElement('option');
-    opt.value = i;
-    opt.innerHTML = i;
-    octaveSelect.appendChild(opt);
+    var opt = document.createElement('option'); //an additional option created
+    opt.value = i;     // assigns integer
+    opt.innerHTML = i; // assigns integer
+    octaveSelect.appendChild(opt); // option is included in the <select>
 }
-octaveSelect.addEventListener("change", octValue); //test octave change
+octaveSelect.addEventListener("change", octValue); //to test octave change
 function octValue(params) {
     //console.log(octaveSelect.value);
 }
 
 
-// activate flat note---------------------------------------
+// activate flat note--------------------------------------- remove code block after completing proj
+/*
 var checkBox = document.getElementById("flatCheck");
 checkBox.addEventListener("click", checkFunc)
 function checkFunc() {
@@ -144,35 +131,41 @@ function checkFunc() {
         //console.log("unchecked");
     }
 }
+*/
 
 
+var checkBox = document.getElementById("flatCheck"); //check box for flat note
 // modulate button--------------------------------------------
-var modBtn = document.getElementById("modulateButton");
-modBtn.addEventListener('click', newKey);
-var keyIndex;
-function newKey() {
-    getKey = keySelect.value + octaveSelect.value;
-    isFlat = checkBox.checked;
+var modBtn = document.getElementById("modulateButton"); // modulate button set to object
+modBtn.addEventListener('click', setNewKeyIndex); // event listener added to object
+var keyIndex; //index of the key`s root note
+function setNewKeyIndex() {
+    getKey = keySelect.value + octaveSelect.value; //set natural key to a string
+    keyIndex = notes.indexOf(getKey); //get index
 
-    keyIndex = getKey;
-    keyIndex = notes.indexOf(keyIndex);
-
+    isFlat = checkBox.checked; //checkbox value to object
     if (isFlat == true) {
-        keyIndex--;
+        keyIndex--; //drop by one semitone if flat is checked
     }
-    fileName = notes[keyIndex] + ".mp3";
-    //console.log(fileName);
+}
+
+function indexToFileName(tempIndex) {
+    fileName = notes[tempIndex] + ".mp3"; //name of src(source) file
+    return fileName;
 }
 
 // play root button----------------------------------------
 var rootSoundOff;
-var playRootBtn = document.getElementById("playRootButton");
-playRootBtn.addEventListener('click', playRoot);
+var playRootBtn = document.getElementById("playRootButton"); // playRootButton set to object
+playRootBtn.addEventListener('click', playRoot); // eventListener added
 function playRoot() {
+    tempAudio(indexToFileName(keyIndex))
+    setScales();
+    /*
     rootSoundOff = document.getElementById("firstPlayer");
     rootSoundOff.src = fileName;
     rootSoundOff.play();
-    setScales();
+    */
     rootSoundOff.mute = true;
     pianorize();
     rootSoundOff.mute = false;
@@ -191,8 +184,8 @@ function setScales() {
 
     for (let index = 1; index <= 8; index++) {
         scaleFiles[index] = parseInt(keyIndex) + parseInt(intervals[index]);
-        scaleFiles[index] = notes[scaleFiles[index]];
-        scaleFiles[index] = scaleFiles[index] + ".mp3";
+        /*scaleFiles[index] = notes[scaleFiles[index]];
+        scaleFiles[index] = scaleFiles[index] + ".mp3";*/
     }
     //console.log(scaleFiles);
 }
@@ -254,3 +247,19 @@ function start3secPlay() {
 }
 
 
+
+var testBtn = document.getElementById("testButton");
+testBtn.addEventListener('click', tempAudio);
+
+function tempAudio(sourceFile) {
+    console.log("func launched");
+    virtAudio = document.createElement("audio");
+    virtAudio.controls = true;
+    document.body.appendChild(virtAudio);
+    virtAudio.src = sourceFile;
+    virtAudio.play();
+    setTimeout(() => {
+        document.body.removeChild(document.body.lastElementChild);
+        delete virtAudio;
+    }, 3000);
+}
