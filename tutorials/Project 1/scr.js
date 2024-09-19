@@ -184,16 +184,30 @@ function pianorize() {
 //----------------USE AUTO-INCREMENT ID FOR EVERY AUDIO ELEMENT THEN REFER TO IT FOR DELETE
 var testBtn = document.getElementById("testButton");
 testBtn.addEventListener('click', tempAudio);
+
+var audioDiv = document.getElementById("audioDiv");
+incrementInt = 0;
 function tempAudio(sourceFile) {
-    console.log("func launched");
+    while (audioDiv.hasChildNodes()) {
+        audioDiv.removeChild(audioDiv.children[0]);
+    }
     virtAudio = document.createElement("audio");
     virtAudio.controls = true;
-    document.body.appendChild(virtAudio);
+    tempID = "x" + incrementInt;
+    virtAudio.id = tempID;
+    incrementInt++;
+    audioDiv.appendChild(virtAudio);
     virtAudio.src = sourceFile;
     virtAudio.play();
-    setTimeout(() => {
-        document.body.removeChild(document.body.lastElementChild);
-        //document.body.remove( virtAudio );
+    setTimeout(() => {   
+        try {
+            if (virtAudio.ended = true) {
+                audioDiv.removeChild(virtAudio);
+            }
+        } catch (error) {  
+        }
+        //audioDiv.removeChild(audioDiv.lastElementChild);
+        //audioDiv.removeChild(virtAudio);//document.getElementById(tempID) );
         delete virtAudio;
     }, 3000);
 }
