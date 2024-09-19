@@ -175,16 +175,7 @@ function pianorize() {
 }
 
 
-
-
-
-//check how many audios are there via get elemt by tag or query selector
-//plays and the self destructs
-
-//----------------USE AUTO-INCREMENT ID FOR EVERY AUDIO ELEMENT THEN REFER TO IT FOR DELETE
-var testBtn = document.getElementById("testButton");
-testBtn.addEventListener('click', tempAudio);
-
+//-----------------plays a sourcefile
 var audioDiv = document.getElementById("audioDiv");
 incrementInt = 0;
 function tempAudio(sourceFile) {
@@ -193,9 +184,11 @@ function tempAudio(sourceFile) {
     }
     virtAudio = document.createElement("audio");
     virtAudio.controls = true;
+
     tempID = "x" + incrementInt;
     virtAudio.id = tempID;
     incrementInt++;
+    
     audioDiv.appendChild(virtAudio);
     virtAudio.src = sourceFile;
     virtAudio.play();
@@ -213,24 +206,31 @@ function tempAudio(sourceFile) {
 }
 
 
-
-
-
 // all works, just make the randomizer and scorekeeper
 // how to make a html button press itself
+
+
+
+//---------------test button         IGNORE ABOVE
+var testBtn = document.getElementById("testButton");
+testBtn.addEventListener('click', start3secPlay);
+
+//var myInterval = setInterval(start3secPlay, 5000);
+//clearInterval(myInterval);
+
+function start3secPlay() {
+    //pianorizeArray[randomIntFromInterval(1, 8)].click();
+    var randomInt = randomIntFromInterval(1, 8);
+    setInterval(function () {
+        tempAudio(indexToFileName(scaleFiles[randomInt])); 
+        randomInt = randomIntFromInterval(1, 8);
+    
+    }, 3500); //plays audio
+    
+
+}
 
 function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-var randomInt = randomIntFromInterval(1, 8);
-//console.log(rndInt);
-
-//clearInterval(myInterval);
-function start3secPlay() {
-    pianorizeArray[randomIntFromInterval(1, 8)].click();
-
-
-}
-
 
