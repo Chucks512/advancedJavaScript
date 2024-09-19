@@ -220,10 +220,12 @@ testBtn.addEventListener('click', start3secPlay);
 
 function start3secPlay() {
     //pianorizeArray[randomIntFromInterval(1, 8)].click();
-    var randomInt = randomIntFromInterval(1, 8);
     setInterval(function () {
-        tempAudio(indexToFileName(scaleFiles[randomInt])); 
         randomInt = randomIntFromInterval(1, 8);
+        tempAudio(indexToFileName(scaleFiles[randomInt])); 
+        document.getElementById("note"+randomInt).click();
+        // now use button.click() instead
+        
     
     }, 3500); //plays audio
     
