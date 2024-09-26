@@ -168,7 +168,6 @@ function pianorize() {
         var tempButton = document.getElementById("note" + index); //get button
         tempButton.addEventListener('click', playSound); // add eventListener
         function playSound() {
-            answerAttempt = index;
             tempAudio(indexToFileName(scaleFiles[index])); //play audio
             pianorizeArray[index] = tempButton; // add button to  array
         }
@@ -209,8 +208,6 @@ function tempAudio(sourceFile) {
 
 // all works, just make the randomizer and scorekeeper
 // how to make a html button press itself
-var answerAttempt;
-var answer;
 
 
 
@@ -225,8 +222,7 @@ function start3secPlay() {
     //pianorizeArray[randomIntFromInterval(1, 8)].click();
     setInterval(function () {
         randomInt = randomIntFromInterval(1, 8);
-        answer = randomInt;
-        //tempAudio(indexToFileName(scaleFiles[randomInt])); 
+        tempAudio(indexToFileName(scaleFiles[randomInt])); 
         document.getElementById("note"+randomInt).click();
         // now use button.click() instead
         
@@ -239,28 +235,3 @@ function start3secPlay() {
 function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-var startQuizBtn = document.getElementById("startQuizButton");
-startQuizBtn.addEventListener('click', startQuiz);
-
-function startQuiz() {
-    for (var i = 1; i <= 10; i++) {
-        randomInt = randomIntFromInterval(1, 8);
-        answer = randomInt;
-        //tempAudio(indexToFileName(scaleFiles[randomInt])); 
-        setTimeout(() => {document.getElementById("note"+randomInt).click();}, 3000)
-        outputString = await preAnswerPromise;
-        //async await here
-    }
-    
-}
-
-
-async function myDisplay() {
-    let preAnswerPromise = new Promise(function(resolve) { //
-      setTimeout(function() {resolve("I love You !!");}, 3000);
-    });
-    document.getElementById("demo").innerHTML = await preAnswerPromise; // use this await
-  }
-  
-  myDisplay();
