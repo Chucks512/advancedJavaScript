@@ -1,4 +1,3 @@
-//test commit and sync
 var notes = [ //note names
     'B0',
     'C1',
