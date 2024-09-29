@@ -1,4 +1,3 @@
-//test commit sasdds
 var notes = [ //note names
     'B0',
     'C1',
@@ -178,6 +177,7 @@ function pianorize() {
 
 //-----------------plays a sourcefile
 var audioDiv = document.getElementById("audioDiv");
+audioDiv.style.backgroundColor = "blue";
 incrementInt = 0;
 function tempAudio(sourceFile) {
     while (audioDiv.hasChildNodes()) {
@@ -189,22 +189,17 @@ function tempAudio(sourceFile) {
     tempID = "x" + incrementInt;
     virtAudio.id = tempID;
     incrementInt++;
-    
+
     audioDiv.appendChild(virtAudio);
     virtAudio.src = sourceFile;
     virtAudio.play();
-    setTimeout(() => {   
-        try {
-            if (virtAudio.ended = true) {
-                audioDiv.removeChild(virtAudio);
-            }
-        } catch (error) {  
-        }
-        //audioDiv.removeChild(audioDiv.lastElementChild);
-        //audioDiv.removeChild(virtAudio);//document.getElementById(tempID) );
+    virtAudio.onended = function () {
+        audioDiv.removeChild(virtAudio);
         delete virtAudio;
-    }, 3000);
+    };
 }
+
+
 
 
 // all works, just make the randomizer and scorekeeper
@@ -223,13 +218,13 @@ function start3secPlay() {
     //pianorizeArray[randomIntFromInterval(1, 8)].click();
     setInterval(function () {
         randomInt = randomIntFromInterval(1, 8);
-        tempAudio(indexToFileName(scaleFiles[randomInt])); 
-        document.getElementById("note"+randomInt).click();
+        tempAudio(indexToFileName(scaleFiles[randomInt]));
+        document.getElementById("note" + randomInt).click();
         // now use button.click() instead
-        
-    
+
+
     }, 3500); //plays audio
-    
+
 
 }
 
