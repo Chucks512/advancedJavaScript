@@ -138,8 +138,6 @@ function setNewKeyIndex() {
     pianorize(); // set button sounds to new scale
 
     randomInterval = randomIntFromInterval(1, 8);
-// |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
 }
 
 
@@ -207,36 +205,6 @@ function playAudio(sourceFile) {
     };
 }
 
-//----------------------test button         IGNORE ABOVE
-/*
-var testBtn = document.getElementById("testButton");
-testBtn.addEventListener('click', start3secPlay);
-
-function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function start3secPlay() {
-    //pianorizeArray[randomIntFromInterval(1, 8)].click();
-    setInterval(function () {
-        randomInt = randomIntFromInterval(1, 8);
-        playAudio(indexToFileName(scaleFiles[randomInt]));
-        document.getElementById("note" + randomInt).click();
-        // now use button.click() instead
-
-
-    }, 3500); //plays audio
-
-
-}
-*/
-
-// randomizer functional but unactivated
-// scorekeeper non-functional
-// async await the question and answer mechanism
-
-
-//test async await with an set interval or a set time out
 
 function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -264,3 +232,7 @@ function funcCheckAnswer() {
     randomInterval = randomIntFromInterval(1, 8);
 }
 
+//refactor
+// comment code
+//check classroom and build scorekeeper
+// build scrollable scoreboard
