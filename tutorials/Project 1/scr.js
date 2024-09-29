@@ -148,7 +148,7 @@ function indexToFileName(tempIndex) {
 var playRootBtn = document.getElementById("playRootButton"); // playRootButton set to object
 playRootBtn.addEventListener('click', playRoot); // eventListener added
 function playRoot() {
-    tempAudio(indexToFileName(keyIndex)); //plays root note
+    playAudio(indexToFileName(keyIndex)); //plays root note
 }
 
 
@@ -168,7 +168,7 @@ function pianorize() {
         var tempButton = document.getElementById("note" + index); //get button
         tempButton.addEventListener('click', playSound); // add eventListener
         function playSound() {
-            tempAudio(indexToFileName(scaleFiles[index])); //play audio
+            playAudio(indexToFileName(scaleFiles[index])); //play audio
             pianorizeArray[index] = tempButton; // add button to  array
         }
     }
@@ -179,7 +179,7 @@ function pianorize() {
 var audioDiv = document.getElementById("audioDiv");
 audioDiv.style.backgroundColor = "blue";
 incrementInt = 0;
-function tempAudio(sourceFile) {
+function playAudio(sourceFile) {
     while (audioDiv.hasChildNodes()) {
         audioDiv.removeChild(audioDiv.children[0]);
     }
@@ -218,7 +218,7 @@ function start3secPlay() {
     //pianorizeArray[randomIntFromInterval(1, 8)].click();
     setInterval(function () {
         randomInt = randomIntFromInterval(1, 8);
-        tempAudio(indexToFileName(scaleFiles[randomInt]));
+        playAudio(indexToFileName(scaleFiles[randomInt]));
         document.getElementById("note" + randomInt).click();
         // now use button.click() instead
 
