@@ -199,20 +199,13 @@ function playAudio(sourceFile) {
     };
 }
 
-
-
-
-// all works, just make the randomizer and scorekeeper
-// how to make a html button press itself
-
-
-
-//---------------test button         IGNORE ABOVE
+//----------------------test button         IGNORE ABOVE
 var testBtn = document.getElementById("testButton");
 testBtn.addEventListener('click', start3secPlay);
 
-//var myInterval = setInterval(start3secPlay, 5000);
-//clearInterval(myInterval);
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 function start3secPlay() {
     //pianorizeArray[randomIntFromInterval(1, 8)].click();
@@ -228,6 +221,9 @@ function start3secPlay() {
 
 }
 
-function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
+
+// randomizer functional but unactivated
+// scorekeeper non-functional
+// async await the question and answer mechanism
+
+
