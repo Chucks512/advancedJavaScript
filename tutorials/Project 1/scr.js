@@ -121,6 +121,7 @@ function octValue(params) {
 
 
 // modulate button--------------------------------------------
+var randomInterval = 0;
 var modBtn = document.getElementById("modulateButton"); // modulate button set to object
 modBtn.addEventListener('click', setNewKeyIndex); // event listener added to object
 var keyIndex; //index of the key`s root note
@@ -135,6 +136,10 @@ function setNewKeyIndex() {
     }
     setScales(); //new key intervals to new array
     pianorize(); // set button sounds to new scale
+
+    randomInterval = randomIntFromInterval(1, 8);
+// |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
 }
 
 
@@ -143,7 +148,6 @@ function indexToFileName(tempIndex) {
     fileName = notes[tempIndex] + ".mp3"; //name of src(source) file
     return fileName;
 }
-
 
 // play root button----------------------------------------
 var playRootBtn = document.getElementById("playRootButton"); // playRootButton set to object
@@ -203,9 +207,8 @@ function playAudio(sourceFile) {
     };
 }
 
-
+//----------------------test button         IGNORE ABOVE
 /*
-//---------------------- former test button         
 var testBtn = document.getElementById("testButton");
 testBtn.addEventListener('click', start3secPlay);
 
@@ -214,11 +217,17 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 function start3secPlay() {
+    //pianorizeArray[randomIntFromInterval(1, 8)].click();
     setInterval(function () {
         randomInt = randomIntFromInterval(1, 8);
         playAudio(indexToFileName(scaleFiles[randomInt]));
         document.getElementById("note" + randomInt).click();
-    }, 2100);
+        // now use button.click() instead
+
+
+    }, 3500); //plays audio
+
+
 }
 */
 
@@ -229,16 +238,15 @@ function start3secPlay() {
 
 //test async await with an set interval or a set time out
 
-var testBtn = document.getElementById("testButton");
-testBtn.addEventListener('click', syncWait);
-console.log("we are waiting chief...");
-
-async function syncWait() {
-    let syncWait = new Promise(function (resolve) {
-        setTimeout(function () { resolve("accepted!"); }, 1000);
-    });
-    myText = await syncWait;
-    console.log(myText);
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-console.log("script done")
+
+
+var playRandomNote = document.getElementById("playRandomNote");
+playRandomNote.addEventListener('click', funcPlayRandomNote);
+
+function funcPlayRandomNote() {
+    playAudio(indexToFileName(scaleFiles[randomInterval]));
+}
