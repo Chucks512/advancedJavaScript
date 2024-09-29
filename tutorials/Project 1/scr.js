@@ -224,10 +224,8 @@ checkAnswer.addEventListener('click', funcCheckAnswer);
 function funcCheckAnswer() {
     if (answerAttempt == randomInterval) {
         console.log("correct");
-        
     } else {
         console.log("WRONG");
-        
     }
     randomInterval = randomIntFromInterval(1, 8);
 }
@@ -236,3 +234,4 @@ function funcCheckAnswer() {
 // comment code
 //check classroom and build scorekeeper
 // build scrollable scoreboard
+// hide or unactivate modulate button for duration of quiz
