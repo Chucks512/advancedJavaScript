@@ -144,6 +144,7 @@ function indexToFileName(tempIndex) {
     return fileName;
 }
 
+
 // play root button----------------------------------------
 var playRootBtn = document.getElementById("playRootButton"); // playRootButton set to object
 playRootBtn.addEventListener('click', playRoot); // eventListener added
@@ -202,7 +203,9 @@ function playAudio(sourceFile) {
     };
 }
 
-//----------------------test button         IGNORE ABOVE
+
+/*
+//---------------------- former test button         
 var testBtn = document.getElementById("testButton");
 testBtn.addEventListener('click', start3secPlay);
 
@@ -211,19 +214,13 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 function start3secPlay() {
-    //pianorizeArray[randomIntFromInterval(1, 8)].click();
     setInterval(function () {
         randomInt = randomIntFromInterval(1, 8);
         playAudio(indexToFileName(scaleFiles[randomInt]));
         document.getElementById("note" + randomInt).click();
-        // now use button.click() instead
-
-
-    }, 3500); //plays audio
-
-
+    }, 2100);
 }
-
+*/
 
 // randomizer functional but unactivated
 // scorekeeper non-functional
@@ -231,3 +228,17 @@ function start3secPlay() {
 
 
 //test async await with an set interval or a set time out
+
+var testBtn = document.getElementById("testButton");
+testBtn.addEventListener('click', syncWait);
+console.log("we are waiting chief...");
+
+async function syncWait() {
+    let syncWait = new Promise(function (resolve) {
+        setTimeout(function () { resolve("accepted!"); }, 1000);
+    });
+    myText = await syncWait;
+    console.log(myText);
+}
+
+console.log("script done")
