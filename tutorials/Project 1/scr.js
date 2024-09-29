@@ -167,7 +167,7 @@ function setScales() {
 
 
 //provides sounds to interval buttons
-isPressed = false;
+var answerAttempt = 0;
 var pianorizeArray = []; //instantiate array
 function pianorize() {
     for (let index = 1; index <= 8; index++) {
@@ -176,7 +176,7 @@ function pianorize() {
         function playSound() {
             playAudio(indexToFileName(scaleFiles[index])); //play audio
             pianorizeArray[index] = tempButton; // add button to  array
-            isPressed = true;
+            answerAttempt = index;
             //or include the async/await response here
         }
     }
@@ -242,11 +242,25 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
-
 var playRandomNote = document.getElementById("playRandomNote");
 playRandomNote.addEventListener('click', funcPlayRandomNote);
 
 function funcPlayRandomNote() {
     playAudio(indexToFileName(scaleFiles[randomInterval]));
 }
+
+
+var checkAnswer = document.getElementById("checkAnswer");
+checkAnswer.addEventListener('click', funcCheckAnswer);
+
+function funcCheckAnswer() {
+    if (answerAttempt == randomInterval) {
+        console.log("correct");
+        
+    } else {
+        console.log("WRONG");
+        
+    }
+    randomInterval = randomIntFromInterval(1, 8);
+}
+
