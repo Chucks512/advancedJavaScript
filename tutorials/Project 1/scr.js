@@ -162,6 +162,7 @@ function setScales() {
 
 
 //provides sounds to interval buttons
+isPressed = false;
 var pianorizeArray = []; //instantiate array
 function pianorize() {
     for (let index = 1; index <= 8; index++) {
@@ -170,6 +171,8 @@ function pianorize() {
         function playSound() {
             playAudio(indexToFileName(scaleFiles[index])); //play audio
             pianorizeArray[index] = tempButton; // add button to  array
+            isPressed = true;
+            //or include the async/await response here
         }
     }
 }
@@ -227,3 +230,4 @@ function start3secPlay() {
 // async await the question and answer mechanism
 
 
+//test async await with an set interval or a set time out
