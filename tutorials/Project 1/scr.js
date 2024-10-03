@@ -174,60 +174,59 @@ function pianorize() {
         function playSound() {
             playAudio(indexToFileName(scaleFiles[index])); //play audio
             pianorizeArray[index] = tempButton; // add button to  array
-            answerAttempt = index;
-            //or include the async/await response here
+            answerAttempt = index;//set user input to variable to be assessed
         }
     }
 }
 
 
 //-----------------plays a sourcefile
-var audioDiv = document.getElementById("audioDiv");
-audioDiv.style.backgroundColor = "blue";
-incrementInt = 0;
+var audioDiv = document.getElementById("audioDiv"); // front end audio div to variable
+audioDiv.style.backgroundColor = "blue"; // set div colour
+incrementInt = 0; // auto-Increment player ID for future reference
 function playAudio(sourceFile) {
-    while (audioDiv.hasChildNodes()) {
-        audioDiv.removeChild(audioDiv.children[0]);
+    while (audioDiv.hasChildNodes()) { //checks if any players are active
+        audioDiv.removeChild(audioDiv.children[0]); //removes players if present
     }
-    virtAudio = document.createElement("audio");
-    virtAudio.controls = true;
+    virtAudio = document.createElement("audio"); //creates audio element
+    virtAudio.controls = true; //activates audio UI controls
 
-    tempID = "x" + incrementInt;
-    virtAudio.id = tempID;
-    incrementInt++;
+    tempID = "x" + incrementInt; //temporary with auto-increment ID
+    virtAudio.id = tempID; //assigns ID to working object
+    incrementInt++; // increment ID counter
 
-    audioDiv.appendChild(virtAudio);
-    virtAudio.src = sourceFile;
-    virtAudio.play();
-    virtAudio.onended = function () {
-        audioDiv.removeChild(virtAudio);
-        delete virtAudio;
+    audioDiv.appendChild(virtAudio);//append to UI
+    virtAudio.src = sourceFile; //assign audio file
+    virtAudio.play(); //play file
+    virtAudio.onended = function () { //at end of play/file
+        audioDiv.removeChild(virtAudio); //remove given audio component
+        delete virtAudio; // delete for memory management
     };
 }
 
 
 function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min); //returns random int
 }
 
-var playRandomNote = document.getElementById("playRandomNote");
-playRandomNote.addEventListener('click', funcPlayRandomNote);
+var playRandomNote = document.getElementById("playRandomNote"); //UI play random note button
+playRandomNote.addEventListener('click', funcPlayRandomNote);//add event listener
 
 function funcPlayRandomNote() {
-    playAudio(indexToFileName(scaleFiles[randomInterval]));
+    playAudio(indexToFileName(scaleFiles[randomInterval])); //plays randomised note
 }
 
 
-var checkAnswer = document.getElementById("checkAnswer");
-checkAnswer.addEventListener('click', funcCheckAnswer);
+var checkAnswer = document.getElementById("checkAnswer"); //check answer button
+checkAnswer.addEventListener('click', funcCheckAnswer); //add event listener
 
 function funcCheckAnswer() {
-    if (answerAttempt == randomInterval) {
-        console.log("correct");
+    if (answerAttempt == randomInterval) { //checks if they the same
+        console.log("correct"); //if yes
     } else {
-        console.log("WRONG");
+        console.log("WRONG"); //if no
     }
-    randomInterval = randomIntFromInterval(1, 8);
+    randomInterval = randomIntFromInterval(1, 8);//assigns new random notes
 }
 
 //refactor

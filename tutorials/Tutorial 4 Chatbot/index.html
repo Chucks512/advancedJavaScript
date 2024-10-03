@@ -12,24 +12,24 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <button class="chatbot-toggler">
-      <span class="material-symbols-rounded">mode_comment</span>
-      <span class="material-symbols-outlined">close</span>
+    <button class="chatbot-toggler"> <!-- open/close chat-->
+      <span class="material-symbols-rounded">mode_comment</span>  <!-- changeable button text-->
+      <span class="material-symbols-outlined">close</span> <!-- close chat-->
     </button>
     <div class="chatbot">
       <header>
-        <h2>Chatbot</h2>
+        <h2>Chatbot</h2> <!--UI header -->
         <span class="close-btn material-symbols-outlined">close</span>
       </header>
-      <ul class="chatbox">
-        <li class="chat incoming">
-          <span class="material-symbols-outlined">smart_toy</span>
-          <p>Hi there <br>How can I help you today?</p>
+      <ul class="chatbox"> <!-- between header & footer-->
+        <li class="chat incoming"> <!-- bot respponses list object-->
+          <span class="material-symbols-outlined">smart_toy</span> <!-- bot profile picture-->
+          <p>Hi there <br>How can I help you today?</p>  <!-- bot default response-->
         </li>
       </ul>
-      <div class="chat-input">
-        <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
-        <span id="send-btn" class="material-symbols-rounded">send</span>
+      <div class="chat-input"> <!-- user input-->
+        <textarea placeholder="Enter a message..." spellcheck="false" required></textarea> <!-- user input-->
+        <span id="send-btn" class="material-symbols-rounded">send</span> <!-- send button-->
       </div>
     </div>
 
