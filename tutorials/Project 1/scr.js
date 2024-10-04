@@ -226,24 +226,32 @@ mark = document.getElementById('mark');//correct attempts out of total attempt
 corrects = 0; // number of correct attempts
 
 function funcCheckAnswer() {
-    if (answerAttempt == randomInterval) { //checks if they the same
+    correctness = (answerAttempt == randomInterval);
+    if (correctness) { //checks if they the same
         console.log("correct"); //if yes
         corrects++;
     } else {
         console.log("WRONG"); //if no
     }
     record = "attempt: " + answerAttempt + ", answer :" + randomInterval;// performance notes string
+    /*
+    if (correctness) {
+        record.style.color = "green";//listItem
+    } else {
+        record.style.color = "red";//listItem
+    }
+    */
     sessionStorage.setItem(sessionCounter.toString(), record);// to session cache
     
 
     scoreUI.innerHTML = '';//clears sores list
     for (var i = 0; i <= sessionCounter; i++) {//for each score attempt
         const listItem = document.createElement('li');//inner list object element
-        listItem.textContent = sessionStorage.getItem(i.toString());//element given text content
+        listItem.textContent = sessionStorage.getItem(i.toString());//element given text content   
         scoreUI.appendChild(listItem);//element sent to front end
     }
     sessionCounter++;//increment number of attempts
-    mark.innerHTML = corrects.toString() + "/" + sessionCounter;//correct mark over total mark
+    mark.innerHTML = corrects.toString() + "/" + sessionCounter + " " + correctness;//correct mark over total mark
     
     randomInterval = randomIntFromInterval(1, 8);//assigns new random notes
 }
