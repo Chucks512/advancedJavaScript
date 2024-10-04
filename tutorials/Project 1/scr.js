@@ -219,15 +219,36 @@ function funcPlayRandomNote() {
 
 var checkAnswer = document.getElementById("checkAnswer"); //check answer button
 checkAnswer.addEventListener('click', funcCheckAnswer); //add event listener
+var record = ""; //temporary record keeper
+sessionCounter = 0;//counts number of score attempts
+scoreUI = document.getElementById('scoreUI');//keep scores list
+mark = document.getElementById('mark');//correct attempts out of total attempt
+corrects = 0; // number of correct attempts
 
 function funcCheckAnswer() {
     if (answerAttempt == randomInterval) { //checks if they the same
         console.log("correct"); //if yes
+        corrects++;
     } else {
         console.log("WRONG"); //if no
     }
+    record = "attempt: " + answerAttempt + ", answer :" + randomInterval;// performance notes string
+    sessionStorage.setItem(sessionCounter.toString(), record);// to session cache
+    
+
+    scoreUI.innerHTML = '';//clears sores list
+    for (var i = 0; i <= sessionCounter; i++) {//for each score attempt
+        const listItem = document.createElement('li');//inner list object element
+        listItem.textContent = sessionStorage.getItem(i.toString());//element given text content
+        scoreUI.appendChild(listItem);//element sent to front end
+    }
+    sessionCounter++;//increment number of attempts
+    mark.innerHTML = corrects.toString() + "/" + sessionCounter;//correct mark over total mark
+    
     randomInterval = randomIntFromInterval(1, 8);//assigns new random notes
 }
+
+
 
 //refactor
 // comment code
