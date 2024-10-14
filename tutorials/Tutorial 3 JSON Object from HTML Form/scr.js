@@ -9,7 +9,7 @@ function convertToJson() {
     }
     let jsonData = JSON.stringify(formData);//turn json to string format
     let jsonOutput = document.getElementById("jsonOutput");//retrieve UI output div
-    jsonOutput.innerHTML = "<pre>" + jsonData + "</pre>"; // assign content to UI
+    jsonOutput.innerHTML = "<pre>" + jsonData + "</pre>"; // reset UI
 }
 /*
 let btnSub = document.getElementById("btnSub");
