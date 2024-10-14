@@ -9,5 +9,5 @@ function convertToJson() {
     }
     let jsonData = JSON.stringify(formData);//turn json to string format
     let jsonOutput = document.getElementById("jsonOutput");//retrieve UI output div
-    jsonOutput.innerHTML = "<pre>" + jsonData + "</pre>"; // reset UI
+    jsonOutput.innerHTML = "<pre>" + jsonData + "</pre>"; // print form data to front end
 }
