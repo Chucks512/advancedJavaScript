@@ -11,7 +11,3 @@ function convertToJson() {
     let jsonOutput = document.getElementById("jsonOutput");//retrieve UI output div
     jsonOutput.innerHTML = "<pre>" + jsonData + "</pre>"; // reset UI
 }
-/*
-let btnSub = document.getElementById("btnSub");
-btnSub.addEventListener("click", convertToJson);
-*/
