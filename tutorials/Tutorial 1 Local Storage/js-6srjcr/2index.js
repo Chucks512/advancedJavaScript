@@ -12,7 +12,7 @@ function localcreateTodoLiElements(localtodoArray) {//takes in array, makes item
 
     localcheckboxEle.setAttribute('type', 'checkbox');//specify checkbox
     localcheckboxEle.setAttribute('id', `local-chbx-${index}`);//set id to text + id concatenation
-    labelEle.setAttribute('for', `local-chbx-${index}`);//set id to text + id concatenation
+    labelEle.setAttribute('for', `local-chbx-${index}`);//who`s it for, whose the parent... set id to text + id concatenation
 
     if (i.checked) {//verifies if checked
       localcheckboxEle.checked = true;//applies the same to frontend
@@ -78,7 +78,7 @@ function sessioncreateTodoLiElements(sessiontodoArray) {//takes in array, makes 
 
     session.setAttribute('type', 'checkbox');//specify checkbox
     session.setAttribute('id', `session-chbx-${index}`);//set id to text + id concatenation
-    labelEle.setAttribute('for', `session-chbx-${index}`);//set id to text + id concatenation
+    labelEle.setAttribute('for', `session-chbx-${index}`);//who`s it for, whose the parent... set id to text + id concatenation
 
     if (i.checked) {//verifies if checked
       session.checked = true;//applies the same to frontend
